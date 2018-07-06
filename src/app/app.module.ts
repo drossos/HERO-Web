@@ -18,8 +18,7 @@ import { AndroidDataComponent } from './contacts/android-data/android-data.compo
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    AndroidDataComponent
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
