@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ContactDetailsComponent } from './contacts/contact-details/contact-details.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
+import { AndroidDataComponent } from './contacts/android-data/android-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactDetailsComponent,
-    ContactListComponent
+    ContactListComponent,
+    AndroidDataComponent
   ],
   imports: [
     BrowserModule,
