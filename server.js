@@ -47,11 +47,11 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/api/contacts", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({})/*.toArray*/,(function(err, docs) {
+  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contacts.");
     } else {
-      res.status(200).json(docs);
+      res.status(200).json(db.collection(CONTACTS_COLLECTION).find({}));
     }
   });
 });
