@@ -52,6 +52,9 @@ app.get("/api/contacts", function(req, res) {
       handleError(res, err.message, "Failed to get contacts.");
     } else {
       res.status(200).json(docs);
+      res.send({
+        docs: docs
+      }) //TODO TEST TO SEE IF THIS IMPROVES THE GET FUNCTIONALITY ON THE APP
     }
   });
 });
