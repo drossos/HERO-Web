@@ -45,13 +45,13 @@ function handleError(res, reason, message, code) {
  *    GET: finds all contacts
  *    POST: creates a new contact
  */
-//GET ONLY WORKS IF NO PARAMS ARE PASSED
+//only works when no params passed and suspected that returns a jsonarray not jsonobject
 app.get("/api/contacts", function(req, res) {
   db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contacts.");
     } else {
-      res.status(200).json(db.collection(CONTACTS_COLLECTION).find({}));
+      res.status(200).json(docs);
     }
   });
 });
