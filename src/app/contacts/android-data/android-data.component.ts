@@ -21,7 +21,7 @@ export class AndroidDataComponent implements OnInit {
   	baseChart:any={
       type: 'pie',
       options: {
-        responsive: false,
+        responsive: true,
         display:true
       }
     };
