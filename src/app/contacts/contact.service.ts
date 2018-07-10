@@ -9,7 +9,12 @@ export class ContactService {
 
     //for getting the current patient contact to be sharable
     //static so the currContact is same for all components
-    static currContact:Contact;
+    static currContact:Contact = {
+      name: '',
+      metric1: -1,
+      metric2: -1,
+      metric3: -1,
+    };
 
     constructor (private http: Http) {}
 
