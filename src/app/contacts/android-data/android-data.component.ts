@@ -65,7 +65,8 @@ export class AndroidDataComponent implements OnInit {
 
   updateGraphType(type:string){
   	this.myChart.clear();
-  	//this.myChart.destroy();
+  	this.myChart.destroy();
+  	this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   	this.baseChart.type = type;
 	this.myChart = new Chart(this.ctx, this.baseChart);
   }
