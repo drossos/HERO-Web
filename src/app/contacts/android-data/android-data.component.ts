@@ -22,7 +22,7 @@ export class AndroidDataComponent implements OnInit {
       type: 'pie',
       options: {
         responsive: true,
-        display:true
+        display:false
       }
     };
   constructor(private contactService:ContactService) { }
