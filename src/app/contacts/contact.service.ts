@@ -8,7 +8,7 @@ export class ContactService {
     private contactsUrl = '/api/contacts';
 
     //for getting the current patient contact to be sharable
-    currContact:Contact;
+    static currContact:Contact;
 
     constructor (private http: Http) {}
 
@@ -47,12 +47,12 @@ export class ContactService {
                  .catch(this.handleError);
     }
 
-    getCurrContact(){
-      return this.currContact;
+    static getCurrContact(){
+      return ContactService.currContact;
     }
 
-    setCurrContact(contact:Contact){
-       this.currContact = contact;
+    static setCurrContact(contact:Contact){
+       ContactService.currContact = contact;
     }
 
     private handleError (error: any): Promise<any> {

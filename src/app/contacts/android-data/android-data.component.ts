@@ -46,7 +46,7 @@ export class AndroidDataComponent implements OnInit {
           labels: ["Metric 1", "Metric 2", "Metric 3"],
           datasets: [{
               label: '# of Votes',
-              data: [this.contactService.getCurrContact().metric1,this.contactService.getCurrContact().metric2,this.contactService.getCurrContact().metric3],
+              data: [ContactService.getCurrContact().metric1,ContactService.getCurrContact().metric2,ContactService.getCurrContact().metric3],
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
