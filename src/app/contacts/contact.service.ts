@@ -8,6 +8,7 @@ export class ContactService {
     private contactsUrl = '/api/contacts';
 
     //for getting the current patient contact to be sharable
+    //static so the currContact is same for all components
     static currContact:Contact;
 
     constructor (private http: Http) {}

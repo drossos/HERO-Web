@@ -27,6 +27,14 @@ export class AndroidDataComponent implements OnInit {
   	//this is just test data for the chart to see if it works
   	this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
+
+    let myChart = new Chart(this.ctx, {
+      type: 'pie',
+      options: {
+        responsive: false,
+        display:true
+      }
+    });
   }
 
   testMethod(){
@@ -40,9 +48,7 @@ export class AndroidDataComponent implements OnInit {
   }
 
   createGraph(){
-  	let myChart = new Chart(this.ctx, {
-      type: 'pie',
-      data: {
+  	this.myChart.data = {
           labels: ["Metric 1", "Metric 2", "Metric 3"],
           datasets: [{
               label: '# of Votes',
@@ -54,12 +60,7 @@ export class AndroidDataComponent implements OnInit {
               ],
               borderWidth: 1
           }]
-      },
-      options: {
-        responsive: false,
-        display:true
       }
-    });
   }
 
   
