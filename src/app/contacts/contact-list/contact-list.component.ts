@@ -44,9 +44,9 @@ export class ContactListComponent implements OnInit {
   createNewContact() {
     var contact: Contact = {
       name: '',
-      metric1: -1,
-      metric2: -1,
-      metric3: -1,
+      metric1: 0,
+      metric2: 0,
+      metric3: 0,
     };
 
     // By default, a newly-created contact will have the selected state.

@@ -11,9 +11,9 @@ export class ContactService {
     //static so the currContact is same for all components
     static currContact:Contact = {
       name: '',
-      metric1: -1,
-      metric2: -1,
-      metric3: -1,
+      metric1: 0,
+      metric2: 0,
+      metric3: 0,
     };
 
     constructor (private http: Http) {}
