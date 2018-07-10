@@ -47,6 +47,14 @@ export class ContactService {
                  .catch(this.handleError);
     }
 
+    getCurrContact(){
+      return this.currContact;
+    }
+
+    setCurrContact(contact:Contact){
+       this.currContact = contact;
+    }
+
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
