@@ -38,7 +38,7 @@ export class ContactListComponent implements OnInit {
 
   selectContact(contact: Contact) {
     this.selectedContact = contact;
-    this.contactService.setCurrContact(this.selectedContact);
+    ContactService.setCurrContact(this.selectedContact);
   }
 
   createNewContact() {
