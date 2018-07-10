@@ -51,12 +51,10 @@ export class AndroidDataComponent implements OnInit {
   	this.myChart.data = {
           labels: ["Metric 1", "Metric 2", "Metric 3"],
           datasets: [{
-              label: '# of Votes',
+              label: 'Measurment',
               data: [ContactService.getCurrContact().metric1,ContactService.getCurrContact().metric2,ContactService.getCurrContact().metric3],
               backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)'
+                  'rgba(255, 99, 132, 1)'
               ],
               borderWidth: 1
           }]
