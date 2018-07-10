@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ContactDetailsComponent } from './contacts/contact-details/contact-details.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { AndroidDataComponent } from './contacts/android-data/android-data.component';
+import {ContactService} from './contacts/contact.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { AndroidDataComponent } from './contacts/android-data/android-data.compo
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
