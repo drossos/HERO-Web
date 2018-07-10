@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartData, Point } from "chart.js";
+import {Contact} from '../contact';
+import { ContactService } from '../contact.service';
+import {ContactListComponent} from '../contact-list/contact-list.component'
+
 @Component({
   selector: 'android-data',
   templateUrl: './android-data.component.html',
@@ -13,6 +17,9 @@ export class AndroidDataComponent implements OnInit {
 	canvas: any;
   	ctx: any;
   	myChart:any;
+  	selectedContact: Contact;
+  	contactList: ContactListComponent;
+
   constructor() { }
 
   ngOnInit() {
@@ -21,13 +28,26 @@ export class AndroidDataComponent implements OnInit {
   	//this is just test data for the chart to see if it works
   	this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
-    let myChart = new Chart(this.ctx, {
+  }
+
+  testMethod(){
+  	console.log("within test method");
+  	if (this.toggle)
+  		this.canvas.style.visibility = 'hidden';
+  	else
+  		this.canvas.style.visibility = 'visible';
+
+  	this.toggle = !this.toggle;
+  }
+
+  createGraph(){
+  	let myChart = new Chart(this.ctx, {
       type: 'pie',
       data: {
-          labels: ["New", "In Progress", "On Hold"],
+          labels: ["Metric 1", "Metric 2", "Metric 3"],
           datasets: [{
               label: '# of Votes',
-              data: [1,2,3],
+              data: [this.contactList.selectedContact.metric1,this.contactList.selectedContact.metric2,this.contactList.selectedContact.metric3],
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
@@ -41,17 +61,6 @@ export class AndroidDataComponent implements OnInit {
         display:true
       }
     });
-
-  }
-
-  testMethod(){
-  	console.log("within test method");
-  	if (this.toggle)
-  		this.canvas.style.visibility = 'hidden';
-  	else
-  		this.canvas.style.visibility = 'visible';
-
-  	this.toggle = !this.toggle;
   }
 
   
