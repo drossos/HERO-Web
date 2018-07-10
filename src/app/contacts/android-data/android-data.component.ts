@@ -63,6 +63,11 @@ export class AndroidDataComponent implements OnInit {
       this.myChart.update();
   }
 
+  updateGraphType(type:string){
+  	this.myChart.type = {type};
+	this.myChart.update();
+  }
+
   
 }
 

@@ -6,13 +6,13 @@
 <button class="btn btn-warning" (click)="updateGraph()">Create Current graph</button>
 
  <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li>HTML</li>
-    <li>CSS</li>
-    <li>JavaScript</li>
-  </ul>
+  <button class="btn btn-warning">Graph Type</button>
+  <div class="dropdown-content">
+    <a (click)="updateGraphType('bar')">Bar</a>
+    <a (click)="updateGraphType('line')">Line</a>
+    <a (click)="updateGraphType('pie')">Pie</a>
+    <a (click)="updateGraphType('radial')">Radial</a>
+  </div>
 </div> 
 
 <canvas id="myChart" width="400" height="400"></canvas>
