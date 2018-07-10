@@ -18,7 +18,13 @@ export class AndroidDataComponent implements OnInit {
 	canvas: any;
   	ctx: any;
   	myChart:any;
-
+  	baseChart:any={
+      type: 'radar',
+      options: {
+        responsive: false,
+        display:true
+      }
+    };
   constructor(private contactService:ContactService) { }
 
   ngOnInit() {
@@ -27,13 +33,7 @@ export class AndroidDataComponent implements OnInit {
   	//this is just test data for the chart to see if it works
   	this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
-    this.myChart = new Chart(this.ctx, {
-      type: 'radar',
-      options: {
-        responsive: false,
-        display:true
-      }
-    });
+    this.myChart = new Chart(this.ctx, this.baseChart);
   }
 
   testMethod(){
@@ -64,8 +64,9 @@ export class AndroidDataComponent implements OnInit {
   }
 
   updateGraphType(type:string){
-  	this.myChart.type = type;
-	this.myChart.update();
+  	this.myChart.destroy();
+  	this.baseChart.type = type;
+	this.myChart = new Chart(this.ctx, this.baseChart);
   }
 
   
