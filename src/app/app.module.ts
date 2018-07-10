@@ -21,7 +21,7 @@ import {ContactService} from './contacts/contact.service';
     FormsModule,
     HttpModule
   ],
-  providers: [ContactService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

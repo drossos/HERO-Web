@@ -18,7 +18,6 @@ export class AndroidDataComponent implements OnInit {
 	canvas: any;
   	ctx: any;
   	myChart:any;
-  	contactList: ContactListComponent;
 
   constructor(private contactService:ContactService) { }
 
