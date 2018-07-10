@@ -5,7 +5,8 @@ import { ContactService } from '../contact.service';
 @Component({
   selector: 'contact-details',
   templateUrl: './contact-details.component.html',
-  styleUrls: ['./contact-details.component.css']
+  styleUrls: ['./contact-details.component.css'],
+  providers: [ContactService]
 })
 
 export class ContactDetailsComponent {
