@@ -61,6 +61,8 @@ export class AndroidDataComponent implements OnInit {
               borderWidth: 1
           }]
       }
+
+      this.myChart.update();
   }
 
   
