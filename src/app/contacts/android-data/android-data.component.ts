@@ -27,8 +27,7 @@ export class AndroidDataComponent implements OnInit {
   	//this is just test data for the chart to see if it works
   	this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
-
-    let myChart = new Chart(this.ctx, {
+    this.myChart = new Chart(this.ctx, {
       type: 'pie',
       options: {
         responsive: false,
@@ -47,7 +46,8 @@ export class AndroidDataComponent implements OnInit {
   	this.toggle = !this.toggle;
   }
 
-  createGraph(){
+//updates graph to fit data selected
+  updateGraph(){
   	this.myChart.data = {
           labels: ["Metric 1", "Metric 2", "Metric 3"],
           datasets: [{
