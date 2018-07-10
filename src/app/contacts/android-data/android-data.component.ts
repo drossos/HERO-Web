@@ -19,7 +19,7 @@ export class AndroidDataComponent implements OnInit {
   	ctx: any;
   	myChart:any;
   	baseChart:any={
-      type: 'radar',
+      type: 'pie',
       options: {
         responsive: false,
         display:true
@@ -64,8 +64,8 @@ export class AndroidDataComponent implements OnInit {
   }
 
   updateGraphType(type:string){
-  	this.myChart.destroy();
   	this.myChart.clear();
+  	this.myChart.destroy();
   	this.baseChart.type = type;
 	this.myChart = new Chart(this.ctx, this.baseChart);
   }
