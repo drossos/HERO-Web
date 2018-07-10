@@ -28,7 +28,7 @@ export class AndroidDataComponent implements OnInit {
   	this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
     this.myChart = new Chart(this.ctx, {
-      type: 'pie',
+      type: 'radar',
       options: {
         responsive: false,
         display:true
