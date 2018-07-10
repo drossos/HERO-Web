@@ -54,7 +54,9 @@ export class AndroidDataComponent implements OnInit {
               label: 'Measurment',
               data: [ContactService.getCurrContact().metric1,ContactService.getCurrContact().metric2,ContactService.getCurrContact().metric3],
               backgroundColor: [
-                  'rgba(255, 99, 132, 1)'
+                  'rgba(255, 99, 132, 1)',
+                  '#0012FF',
+                  '#22FF1D'
               ],
               borderWidth: 1
           }]
