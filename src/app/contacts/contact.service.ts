@@ -7,6 +7,9 @@ import 'rxjs/add/operator/toPromise';
 export class ContactService {
     private contactsUrl = '/api/contacts';
 
+    //for getting the current patient contact to be sharable
+    currContact:Contact;
+
     constructor (private http: Http) {}
 
     // get("/api/contacts")

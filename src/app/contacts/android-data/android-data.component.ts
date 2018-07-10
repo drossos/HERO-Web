@@ -17,10 +17,9 @@ export class AndroidDataComponent implements OnInit {
 	canvas: any;
   	ctx: any;
   	myChart:any;
-  	selectedContact: Contact;
   	contactList: ContactListComponent;
 
-  constructor() { }
+  constructor(private contactService: ContactService) { }
 
   ngOnInit() {
   	console.log("Within android-data init")
@@ -47,7 +46,7 @@ export class AndroidDataComponent implements OnInit {
           labels: ["Metric 1", "Metric 2", "Metric 3"],
           datasets: [{
               label: '# of Votes',
-              data: [this.contactList.selectedContact.metric1,this.contactList.selectedContact.metric2,this.contactList.selectedContact.metric3],
+              data: [this.contactService.currContact.metric1,this.contactService.currContact.metric2,this.contactService.currContact.metric3],
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
