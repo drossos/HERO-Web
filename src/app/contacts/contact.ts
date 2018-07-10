@@ -1,9 +1,7 @@
 export class Contact {
   _id?: string;
   name: string;
-  email: string;
-  phone: {
-    mobile: string;
-    work: string;
-  }
+  metric1: number;
+  metric2: number;
+  metric3: number;
 }
