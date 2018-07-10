@@ -7,7 +7,8 @@ import {ContactListComponent} from '../contact-list/contact-list.component'
 @Component({
   selector: 'android-data',
   templateUrl: './android-data.component.html',
-  styleUrls: ['./android-data.component.css']
+  styleUrls: ['./android-data.component.css'],
+  providers: [ContactService]
 })
 export class AndroidDataComponent implements OnInit {
 
@@ -19,7 +20,7 @@ export class AndroidDataComponent implements OnInit {
   	myChart:any;
   	contactList: ContactListComponent;
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService:ContactService) { }
 
   ngOnInit() {
   	console.log("Within android-data init")
