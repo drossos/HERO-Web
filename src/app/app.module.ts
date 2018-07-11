@@ -8,13 +8,17 @@ import { ContactDetailsComponent } from './contacts/contact-details/contact-deta
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { AndroidDataComponent } from './contacts/android-data/android-data.component';
 import {ContactService} from './contacts/contact.service';
+import { LoginSigninComponent } from './login/login-signin/login-signin.component';
+import { LoginSignupComponent } from './login/login-signup/login-signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactDetailsComponent,
     ContactListComponent,
-    AndroidDataComponent
+    AndroidDataComponent,
+    LoginSigninComponent,
+    LoginSignupComponent
   ],
   imports: [
     BrowserModule,

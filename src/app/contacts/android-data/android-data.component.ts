@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Chart, ChartData, Point } from "chart.js";
 import {Contact} from '../contact';
 import { ContactService } from '../contact.service';
-import {ContactListComponent} from '../contact-list/contact-list.component'
-
+import {ContactListComponent} from '../contact-list/contact-list.component';
+ 
 @Component({
   selector: 'android-data',
   templateUrl: './android-data.component.html',
@@ -11,6 +11,9 @@ import {ContactListComponent} from '../contact-list/contact-list.component'
   providers: [ContactService]
 })
 export class AndroidDataComponent implements OnInit {
+
+  @Input()
+  contact: Contact;
 
 	test : string = "Android Pipes are working";
 	testConfirm : string = ""
