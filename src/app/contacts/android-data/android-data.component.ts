@@ -11,7 +11,10 @@ import {ContactListComponent} from '../contact-list/contact-list.component';
   providers: [ContactService]
 })
 export class AndroidDataComponent implements OnInit {
-  contact = ContactService.getCurrContact();
+   @Input()
+   contact: Contact;
+
+  //contact = ContactService.getCurrContact();
 	test : string = "Android Pipes are working";
 	testConfirm : string = ""
 	toggle : boolean = true;
