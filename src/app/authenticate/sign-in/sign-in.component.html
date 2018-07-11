@@ -1,0 +1,23 @@
+<contact-list *ngIf="!signIn">
+</contact-list>
+<div class="container" *ngIf = "signIn">
+	<div class="row">
+		
+		<div class="col-md-6">
+			<h1 class="form-signin-heading">Sign in</h1>
+			<p class="lead">Not a member? Please register instead.</p>
+			
+			<form (submit)="login()">
+				<div class="form-group">
+					<label for="email">Email address</label>
+					<input type="email" class="form-control" name="email" placeholder="Enter email" >
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" name="password" placeholder="Password" >
+				</div>
+				<button type="submit" class="btn btn-warning">Sign in</button>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Contact } from '../contact';
 import { ContactService } from '../contact.service';
 import { ContactDetailsComponent } from '../contact-details/contact-details.component';
 import {AndroidDataComponent} from '../android-data/android-data.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'contact-list',
@@ -12,7 +13,6 @@ import {AndroidDataComponent} from '../android-data/android-data.component';
 })
 
 export class ContactListComponent implements OnInit {
-
   contacts: Contact[]
   selectedContact: Contact
 
