@@ -11,10 +11,7 @@ import {ContactListComponent} from '../contact-list/contact-list.component';
   providers: [ContactService]
 })
 export class AndroidDataComponent implements OnInit {
-
-  @Input()
-  contact: Contact;
-
+  contact = ContactService.getCurrContact();
 	test : string = "Android Pipes are working";
 	testConfirm : string = ""
 	toggle : boolean = true;
@@ -28,6 +25,7 @@ export class AndroidDataComponent implements OnInit {
         display:true
       }
     };
+
   constructor(private contactService:ContactService) { }
 
   ngOnInit() {
