@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from '../contact';
 import { ContactService } from '../contact.service';
 import { ContactDetailsComponent } from '../contact-details/contact-details.component';
+import {AndroidDataComponent} from '../android-data/android-data.component';
 
 @Component({
   selector: 'contact-list',
