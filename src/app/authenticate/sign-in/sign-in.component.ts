@@ -17,8 +17,8 @@ export class SignInComponent implements OnInit {
 
   
  // @Input()
-  therapist :Therapist;
-
+  currTherapist :Therapist;
+  therapist:Therapist;
   therapists:Therapist[];
   signIn : boolean = true;
 	//contactList : ContactListComponent;
