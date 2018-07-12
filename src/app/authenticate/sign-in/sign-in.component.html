@@ -9,12 +9,12 @@
 			
 			<form (submit)="login()">
 				<div class="form-group">
-					<label for="email">Email address</label>
-					<input type="email" class="form-control" name="email" placeholder="Enter email" >
+					<label for="name">Name</label>
+					<input type="name" class="form-control" name="name" placeholder="Enter name" [(ngModel)] = therapist.name>
 				</div>
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input type="password" class="form-control" name="password" placeholder="Password" >
+					<input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)] = therapist.hash>
 				</div>
 				<button type="submit" class="btn btn-warning">Sign in</button>
 			</form>
