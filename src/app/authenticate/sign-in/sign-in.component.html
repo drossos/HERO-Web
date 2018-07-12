@@ -7,7 +7,7 @@
 				<h1 class="form-signin-heading">Sign in</h1>
 				<p class="lead">Sign in for Therapists</p>
 				
-				<form #heroForm="ngForm" (submit)="login()">
+				<form #signIn="ngForm" (ngSubmit)="login(signIn)">
 					<!-- <form> -->
 						<div class="form-group">
 							<label for="name">Name</label>
@@ -17,7 +17,7 @@
 							<label for="password">Password</label>
 							<input type="password" class="form-control" name="password" placeholder="Password"  placeholder="password">
 						</div>
-						<button type="submit" class="btn btn-warning" (click)="login()">Sign in</button>
+						<button type="submit" class="btn btn-warning" >Sign in</button>
 					</form>
 				</div>
 			</div>
