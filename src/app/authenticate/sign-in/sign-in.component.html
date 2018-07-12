@@ -1,14 +1,14 @@
 <contact-list *ngIf="!signIn">
 </contact-list>
-<div *ngIf="!therapist" class="row">
+<div *ngIf="therapist" class="row">
 	<div class="therapist" *ngIf = "signIn">
 		<div class="row">
 			<div class="col-md-6">
 				<h1 class="form-signin-heading">Sign in</h1>
 				<p class="lead">Sign in for Therapists</p>
 				
-				<!-- <form (submit)="login()"> -->
-					<form>
+				<form (submit)="login()">
+					<!-- <form> -->
 						<div class="form-group">
 							<label for="name">Name</label>
 							<input type="name" class="form-control" name="name" placeholder="Enter name" placeholder="name">
