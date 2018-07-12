@@ -20,29 +20,31 @@ app.use(express.static(distDir));
 var db;
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(process.env.MONGODB_URI || "localhost:27017", function (err, client) {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "localhost:27017", function(err, client) {
+    if (err) {
+        console.log(err);
+        process.exit(1);
+    }
 
-  // Save database object from the callback for reuse.
-  db = client.db();
-  console.log("Database connection ready");
+    // Save database object from the callback for reuse.
+    db = client.db();
+    console.log("Database connection ready");
 
-  // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
+    // Initialize the app.
+    var server = app.listen(process.env.PORT || 8080, function() {
+        var port = server.address().port;
+        console.log("App now running on port", port);
+    });
 });
 
 // CONTACTS API ROUTES BELOW
 
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
-  console.log("ERROR: " + reason);
-  res.status(code || 500).json({"error": message});
+    console.log("ERROR: " + reason);
+    res.status(code || 500).json({
+        "error": message
+    });
 }
 
 /*  "/api/contacts"
@@ -51,30 +53,30 @@ function handleError(res, reason, message, code) {
  */
 //only works when no params passed and suspected that returns a jsonarray not jsonobject
 app.get("/api/contacts", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get contacts.");
-    } else {
-      res.status(200).json(docs);
-    }
-  });
+    db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+        if (err) {
+            handleError(res, err.message, "Failed to get contacts.");
+        } else {
+            res.status(200).json(docs);
+        }
+    });
 });
 
 app.post("/api/contacts", function(req, res) {
-  var newContact = req.body;
-  newContact.createDate = new Date();
+    var newContact = req.body;
+    newContact.createDate = new Date();
 
-  if (!req.body.name) {
-    handleError(res, "Invalid user input", "Must provide a name.", 400);
-  }
-
-  db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new contact.");
-    } else {
-      res.status(201).json(doc.ops[0]);
+    if (!req.body.name) {
+        handleError(res, "Invalid user input", "Must provide a name.", 400);
     }
-  });
+
+    db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to create new contact.");
+        } else {
+            res.status(201).json(doc.ops[0]);
+        }
+    });
 });
 
 /*  "/api/contacts/:id"
@@ -84,55 +86,62 @@ app.post("/api/contacts", function(req, res) {
  */
 
 app.get("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to get contact");
-    } else {
-      res.status(200).json(doc);
-    }
-  });
+    db.collection(CONTACTS_COLLECTION).findOne({
+        _id: new ObjectID(req.params.id)
+    }, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to get contact");
+        } else {
+            res.status(200).json(doc);
+        }
+    });
 });
 
 app.put("/api/contacts/:id", function(req, res) {
-  var updateDoc = req.body;
-  delete updateDoc._id;
+    var updateDoc = req.body;
+    delete updateDoc._id;
 
-  db.collection(CONTACTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to update contact");
-    } else {
-      updateDoc._id = req.params.id;
-      res.status(200).json(updateDoc);
-    }
-  });
+    db.collection(CONTACTS_COLLECTION).updateOne({
+        _id: new ObjectID(req.params.id)
+    }, updateDoc, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to update contact");
+        } else {
+            updateDoc._id = req.params.id;
+            res.status(200).json(updateDoc);
+        }
+    });
 });
 
 app.delete("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
-    if (err) {
-      handleError(res, err.message, "Failed to delete contact");
-    } else {
-      res.status(200).json(req.params.id);
-    }
-  });
+    db.collection(CONTACTS_COLLECTION).deleteOne({
+        _id: new ObjectID(req.params.id)
+    }, function(err, result) {
+        if (err) {
+            handleError(res, err.message, "Failed to delete contact");
+        } else {
+            res.status(200).json(req.params.id);
+        }
+    });
 });
 
 //Auth REST calls
 
 app.get("/api/therapists", function(req, res) {
-  db.collection(THERAPISTS_COLLECTON).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get therapists.");
-    } else {
-      res.status(200).json(docs);
-    }
-  });
+    db.collection(THERAPISTS_COLLECTON).find({}).toArray(function(err, docs) {
+        if (err) {
+            handleError(res, err.message, "Failed to get therapists.");
+        } else {
+            res.status(200).json(docs);
+        }
+    });
 });
 
 app.post("/api/therapists", function(req, res) {
-  var newTherapist = req.body;
-  newTherapist.createDate = new Date();
+    var newTherapist = req.body;
+    newTherapist.createDate = new Date();
 
-  if (!req.body.name) {
-    handleError(res, "Invalid user input", "Must provide a name.", 400);
-  }
+    if (!req.body.name) {
+        handleError(res, "Invalid user input", "Must provide a name.", 400);
+    }
+});
