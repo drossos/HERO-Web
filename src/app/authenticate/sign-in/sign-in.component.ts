@@ -24,6 +24,7 @@ export class SignInComponent implements OnInit {
   therapist:Therapist;
   therapists:Therapist[];
   signIn : boolean = true;
+  failedSignIn : boolean = false;
 	//contactList : ContactListComponent;
  	/*credentials: TokenPayload = {
     email: '',
@@ -60,6 +61,7 @@ export class SignInComponent implements OnInit {
        if ((this.therapists[i] as any).name === (form.value).name && (this.therapists[i] as any).hash === (form.value).password)
          return true;
     }
+    this.failedSignIn = true;
     return false;
   }
 

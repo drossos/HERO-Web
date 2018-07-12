@@ -27,6 +27,10 @@
 						<input type="password" class="form-control" name="password" placeholder="Password" placeholder="password" ngModel>
 					</div>
 					<button type="submit" class="btn btn-warning" >Sign in</button>
+
+					<div *ngIf="failedSignIn" class = "alert alert-danger">
+						Failed Sign-In Attempt
+					</div>
 				</form>
 			</div>
 		</div>
