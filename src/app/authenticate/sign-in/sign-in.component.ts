@@ -18,7 +18,6 @@ export class SignInComponent implements OnInit {
 
   
  // @Input()
- contact:Contact;
   currTherapist :Therapist;
   therapist:Therapist;
   therapists:Therapist[];
