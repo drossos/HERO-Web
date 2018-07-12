@@ -116,3 +116,15 @@ app.delete("/api/contacts/:id", function(req, res) {
     }
   });
 });
+
+//sign in REST calls
+
+app.get("/api/therapists", function(req, res) {
+  db.collection(THERAPISTS_COLLECTON).find({}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get therapists.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
