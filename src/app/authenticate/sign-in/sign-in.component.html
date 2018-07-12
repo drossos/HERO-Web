@@ -7,15 +7,15 @@
 				<h1 class="form-signin-heading">Sign in</h1>
 				<p class="lead">Sign in for Therapists</p>
 				
-				<form (ngSubmit)="login()">
+				<form #signIn="ngForm" (ngSubmit)="login(signIn)">
 					<!-- <form> -->
 						<div class="form-group">
 							<label for="name">Name</label>
-							<input type="text" class="form-control" name="name" placeholder="Enter name" [(ngModel)]="currTherapist.name" placeholder="name">
+							<input type="text" class="form-control" name="name" placeholder="Enter name" placeholder="name" ngModel>
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
-							<input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="currTherapist.hash" placeholder="password">
+							<input type="password" class="form-control" name="password" placeholder="Password" placeholder="password" ngModel>
 						</div>
 						<button type="submit" class="btn btn-warning" >Sign in</button>
 					</form>
