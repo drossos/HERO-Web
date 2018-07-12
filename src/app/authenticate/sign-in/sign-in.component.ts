@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ContactListComponent} from '../../contacts/contact-list/contact-list.component';
 import {Therapist} from '../therapist';
 import {AuthenticateService} from '../authenticate.service';
+import {Contact} from '../../contacts/contact';
 //TODO HAVE TO CAST THERAPIST AS ANY FOR IT TO READ PROPERTIES
 
 @Component({
@@ -17,6 +18,7 @@ export class SignInComponent implements OnInit {
 
   
  // @Input()
+ contact:Contact;
   currTherapist :Therapist;
   therapist:Therapist;
   therapists:Therapist[];
