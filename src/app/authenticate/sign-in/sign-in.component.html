@@ -1,8 +1,8 @@
 <contact-list *ngIf="!signIn">
 </contact-list>
-<div class="container" *ngIf = "signIn">
+<div *ngIf="contact" class="row">
+<div class="therapist" *ngIf = "signIn">
 	<div class="row">
-		
 		<div class="col-md-6">
 			<h1 class="form-signin-heading">Sign in</h1>
 			<p class="lead">Sign in for Therapists</p>
@@ -20,4 +20,5 @@
 			</form>
 		</div>
 	</div>
+</div>
 </div>
