@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 var ObjectID = mongodb.ObjectID;
 
 var CONTACTS_COLLECTION = "patients";
-var THERAPISTS_COLLECTON = "therapists";
+//var THERAPISTS_COLLECTON = "therapists";
 
 var app = express();
 app.use(bodyParser.json());
