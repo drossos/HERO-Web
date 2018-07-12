@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ContactListComponent} from '../../contacts/contact-list/contact-list.component';
 import {Therapist} from '../therapist';
 import {AuthenticateService} from '../authenticate.service';
-//TODO IMPLIMENT A USER DATABASE TO ALLOW FOR ONLY SOME PEOPLE TO BE ALLOWED IN
+//TODO HAVE TO CAST THERAPIST AS ANY FOR IT TO READ PROPERTIES
 
 @Component({
   selector: 'sign-in',
@@ -19,6 +19,7 @@ export class SignInComponent implements OnInit {
   @Input()
   therapist :Therapist;
 
+  therapists:Therapist[];
   signIn : boolean = true;
 	contactList : ContactListComponent;
  	/*credentials: TokenPayload = {
@@ -29,20 +30,30 @@ export class SignInComponent implements OnInit {
   constructor(private authService:AuthenticateService) { }
 
   ngOnInit() {
+
+    this.authService
+      .getTherapists()
+      .then((therapists: Therapist[]) => {
+        this.therapists = therapists.map((therapist) => {
+          if (!(therapist as any).name) {
+            (therapist as any).name = "default";
+          }
+          return therapist;
+        });
+      });
   }
 
   login(){
-    var dbArr = this.authService.getTherapists();
 
-    if (this.fetchTherapist(dbArr))
+    if (this.fetchTherapist())
       this.signIn = false;
     else 
       console.log("non-valid therapist");
   }
 
-  fetchTherapist(dbArr){
-    for (var i=0; i < dbArr.length; i++){
-       if ((dbArr[i] as any).name === (this.therapist as any).name && (dbArr[i] as any).hash === (this.therapist as any).hash)
+  fetchTherapist(){
+    for (var i=0; i < this.therapists.length; i++){
+       if ((this.therapists[i] as any).name === (this.therapist as any).name && (this.therapists[i] as any).hash === (this.therapist as any).hash)
          return true;
     }
     return false;
