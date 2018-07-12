@@ -1,25 +1,25 @@
 <contact-list *ngIf="!signIn">
 </contact-list>
 <div *ngIf="therapist" class="row">
-<div class="therapist" *ngIf = "signIn">
-	<div class="row">
-		<div class="col-md-6">
-			<h1 class="form-signin-heading">Sign in</h1>
-			<p class="lead">Sign in for Therapists</p>
-			
-			<form (submit)="login()">
-				<form>
-				<div class="form-group">
-					<label for="name">Name</label>
-					<input type="name" class="form-control" name="name" placeholder="Enter name" placeholder="name">
+	<div class="therapist" *ngIf = "signIn">
+		<div class="row">
+			<div class="col-md-6">
+				<h1 class="form-signin-heading">Sign in</h1>
+				<p class="lead">Sign in for Therapists</p>
+				
+				<form (submit)="login()">
+					<form>
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="name" class="form-control" name="name" placeholder="Enter name" placeholder="name">
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" name="password" placeholder="Password"  placeholder="password">
+						</div>
+						<button type="submit" class="btn btn-warning" (click)="login()">Sign in</button>
+					</form>
 				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" name="password" placeholder="Password"  placeholder="password">
-				</div>
-				<button type="submit" class="btn btn-warning" (click)="login()">Sign in</button>
-			</form>
+			</div>
 		</div>
 	</div>
-</div>
-</div>
