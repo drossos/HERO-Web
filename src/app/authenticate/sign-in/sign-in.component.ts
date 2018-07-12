@@ -17,7 +17,7 @@ import {Contact} from '../../contacts/contact';
 export class SignInComponent implements OnInit {
 
   
- // @Input()
+  @Input()
   currTherapist :Therapist;
   therapist:Therapist;
   therapists:Therapist[];
