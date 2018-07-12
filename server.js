@@ -117,7 +117,7 @@ app.delete("/api/contacts/:id", function(req, res) {
   });
 });
 
-//sign in REST calls
+//Auth REST calls
 
 app.get("/api/therapists", function(req, res) {
   db.collection(THERAPISTS_COLLECTON).find({}).toArray(function(err, docs) {
@@ -128,3 +128,11 @@ app.get("/api/therapists", function(req, res) {
     }
   });
 });
+
+app.post("/api/therapists", function(req, res) {
+  var newTherapist = req.body;
+  newTherapist.createDate = new Date();
+
+  if (!req.body.name) {
+    handleError(res, "Invalid user input", "Must provide a name.", 400);
+  }

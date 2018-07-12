@@ -3,6 +3,7 @@ import { Contact } from './contact';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
+//TODO MAKE IT SO PASSWORDS ARE CONVERTED AND COMBINDED WITH A SALT
 @Injectable()
 export class ContactService {
     private contactsUrl = '/api/contacts';

@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+//import { AuthenticationService, TokenPayload } from '../authenticate.service';
+import { Router } from '@angular/router';
+import {NgForm} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+/*import {AppComponent} from '../../app.component'*/
+import { ContactListComponent} from '../../contacts/contact-list/contact-list.component';
+import {Therapist} from '../therapist';
+import {AuthenticateService} from '../authenticate.service';
+import {Contact} from '../../contacts/contact';
 
 @Component({
   selector: 'sign-up',
@@ -7,9 +16,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService:AuthenticateService) { }
 
   ngOnInit() {
+  }
+
+  register(form : NgForm){
+
   }
 
 }

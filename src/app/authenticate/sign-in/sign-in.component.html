@@ -1,39 +1,36 @@
 <contact-list *ngIf="!signIn">
 </contact-list>
-<div *ngIf="!currTherapist" class="row">
-	<div class="therapist" *ngIf = "signIn">
-		<div class="row">
-			<div class="col-md-6">
-				<h1 class="form-signin-heading">Sign in</h1>
-				<p class="lead">Sign in for Therapists</p>
-				
-				<form #signIn="ngForm" (ngSubmit)="login(signIn)">
-					<!-- <form> -->
-					<div class="form-group">
-						<label for="name">Name</label>
-						<input type="text" class="form-control" name="name" placeholder="Enter name" minlength="4" placeholder="name" ngModel #name="ngModel" required>
-						<div *ngIf="name.invalid && (name.dirty || name.touched)"
-							class="alert alert-danger">
-							<div *ngIf="name.errors.required">
-								Name is required.
-							</div>
-							<div *ngIf="name.errors.minlength">
-								Name must be at least 4 characters long.
-							</div>
+<div class="therapist" *ngIf = "signIn">
+	<div class="row">
+		<div class="col-md-6">
+			<h1 class="form-signin-heading">Sign in</h1>
+			<p class="lead">Sign in for Therapists</p>
+			
+			<form #signIn="ngForm" (ngSubmit)="login(signIn)">
+				<!-- <form> -->
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" name="name" placeholder="Enter name" minlength="4" placeholder="name" ngModel #name="ngModel" required>
+					<div *ngIf="name.invalid && (name.dirty || name.touched)"
+						class="alert alert-danger">
+						<div *ngIf="name.errors.required">
+							Name is required.
+						</div>
+						<div *ngIf="name.errors.minlength">
+							Name must be at least 4 characters long.
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="password">Password</label>
-						<input type="password" class="form-control" name="password" placeholder="Password" placeholder="password" ngModel>
-					</div>
-					<br>
-					<div *ngIf="failedSignIn" class = "alert alert-danger">
-						Failed Sign-In Attempt
-					</div>
-					<button type="submit" class="btn btn-warning" >Sign in</button>
-
-				</form>
-			</div>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" name="password" placeholder="Password" placeholder="password" ngModel>
+				</div>
+				<br>
+				<div *ngIf="failedSignIn" class = "alert alert-danger">
+					Failed Sign-In Attempt
+				</div>
+				<button type="submit" class="btn btn-warning" >Sign in</button>
+			</form>
 		</div>
 	</div>
 </div>

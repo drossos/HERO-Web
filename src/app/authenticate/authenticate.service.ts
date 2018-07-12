@@ -19,6 +19,15 @@ export class AuthenticateService {
                  .catch(this.handleError);
     }
 
+    // post("/api/contacts")
+    createContact(newTherapist: Therapist): Promise<Therapist> {
+      return this.http.post(this.therapistsUrl, newTherapist)
+                 .toPromise()
+                 .then(response => response.json() as Therapist)
+                 .catch(this.handleError);
+    }
+
+
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
