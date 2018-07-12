@@ -54,7 +54,7 @@ export class SignInComponent implements OnInit {
 
   fetchTherapist(){
     for (var i=0; i < this.therapists.length; i++){
-       if ((this.therapists[i] as any).name === (this.therapist as any).name && (this.therapists[i] as any).hash === (this.therapist as any).hash)
+       if ((this.therapists[i] as any).name === (this.currTherapist as any).name && (this.therapists[i] as any).hash === (this.currTherapist as any).hash)
          return true;
     }
     return false;
