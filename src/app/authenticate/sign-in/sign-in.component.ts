@@ -44,8 +44,8 @@ export class SignInComponent implements OnInit {
       });
   }
 
-  login(form){
-    console.log(form.value);
+  login(){
+    console.log("in on submit");
     if (this.fetchTherapist())
       this.signIn = false;
     else 
