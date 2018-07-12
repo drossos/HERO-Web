@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
 
-    this.authService
+   /* this.authService
       .getTherapists()
       .then((therapists: Therapist[]) => {
         this.therapists = therapists.map((therapist) => {
@@ -41,7 +41,7 @@ export class SignInComponent implements OnInit {
           }
           return therapist;
         });
-      });
+      });*/
   }
 
   login(){
