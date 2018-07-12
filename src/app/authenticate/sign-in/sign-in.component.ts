@@ -16,12 +16,12 @@ import {AuthenticateService} from '../authenticate.service';
 export class SignInComponent implements OnInit {
 
   
-  @Input()
+ // @Input()
   therapist :Therapist;
 
   therapists:Therapist[];
   signIn : boolean = true;
-	contactList : ContactListComponent;
+	//contactList : ContactListComponent;
  	/*credentials: TokenPayload = {
     email: '',
     password: ''
