@@ -47,15 +47,16 @@ export class SignInComponent implements OnInit {
 
   login(form : NgForm){
     console.log(form.value);
-    if (this.fetchTherapist())
+    
+    if (this.fetchTherapist(form))
       this.signIn = false;
     else 
       console.log("non-valid therapist");
   }
 
-  fetchTherapist(){
+  fetchTherapist(form){
     for (var i=0; i < this.therapists.length; i++){
-       if ((this.therapists[i] as any).name === (this.currTherapist as any).name && (this.therapists[i] as any).hash === (this.currTherapist as any).hash)
+       if ((this.therapists[i] as any).name === (form).name && (this.therapists[i] as any).hash === (form).password)
          return true;
     }
     return false;
