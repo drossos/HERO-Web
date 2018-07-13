@@ -142,7 +142,7 @@ app.post("/api/therapists", function(req, res) {
     var newTherapist = req.body;
     newTherapist.createDate = new Date();
 
-    if (!req.body.hash) {
+    if (!req.body.name) {
         handleError(res, "Invalid user input", "Must provide a name.", 400);
     }
 
