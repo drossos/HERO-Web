@@ -12,7 +12,8 @@ import {Contact} from '../../contacts/contact';
 @Component({
   selector: 'sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.css'],
+  providers: [AuthenticateService]
 })
 export class SignUpComponent implements OnInit {
 
