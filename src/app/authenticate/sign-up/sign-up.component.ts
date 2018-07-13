@@ -52,6 +52,8 @@ export class SignUpComponent implements OnInit {
   addTherapist = (newTherapist : Therapist) => {
   	this.therapists.push(newTherapist);
   	this.authService.createTherapist(newTherapist);
+  	AuthenticateService.signIn = false;
+  	AuthenticateService.signUp = false;
   	return this.therapists;
   }
 
