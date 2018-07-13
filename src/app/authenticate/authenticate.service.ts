@@ -6,6 +6,7 @@ import {SHA512} from 'crypto-js';
 //import * as randomBytes from 'random-bytes';
 import 'rxjs/add/operator/toPromise';
 import {RandomBytes} from 'random-bytes'
+import {RandomString} from 'randomstring';
 @Injectable()
 export class AuthenticateService {
 	private therapistsUrl = '/api/therapists';
@@ -54,9 +55,10 @@ export class AuthenticateService {
     }
 
     saltGenerator(length) {
-        //returns salt
-        //return RandomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
-        return "asdf";
+        return RandomString.generate({
+          length : length,
+          charset : 'hex'
+        });
     }
 
     sha512Encrypt(password, salt) {
