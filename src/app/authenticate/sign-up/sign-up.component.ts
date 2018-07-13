@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { ContactListComponent} from '../../contacts/contact-list/contact-list.component';
 import {Therapist} from '../therapist';
 import {AuthenticateService} from '../authenticate.service';
-import {Contact} from '../../contacts/contact';
 
 @Component({
   selector: 'sign-up',
