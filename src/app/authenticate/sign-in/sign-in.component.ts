@@ -67,7 +67,7 @@ export class SignInComponent implements OnInit {
   fetchTherapist(form){
     for (var i=0; i < this.therapists.length; i++){
        if ((this.therapists[i] as any).name === (form.value).name && 
-         this.authService.verrifyPassword((this.therapists[i] as any).hash, (this.therapists[i] as any).salt,(form.value).passowrd))
+         this.authService.verrifyPassword((this.therapists[i] as any).hash, (this.therapists[i] as any).salt,(form.value).password))
          return true;
     }
     this.failedSignIn = true;

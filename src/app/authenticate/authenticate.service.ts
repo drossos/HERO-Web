@@ -66,7 +66,7 @@ export class AuthenticateService {
     }
 
     sha512Encrypt(password, salt) {
-        var hash = SHA512(password+salt).toString(); /** Hashing algorithm sha512 */
+        var hash = SHA512(password+""+salt).toString(); /** Hashing algorithm sha512 */
         //var value = hash.digest('hex');
         //return password + salt hashed value
         return hash;
