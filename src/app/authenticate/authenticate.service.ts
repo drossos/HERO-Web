@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import {Therapist} from './therapist';
-//import {SHA512} from 'crypto-js';
-import * as crypto from 'crypto-js';
+import {SHA512} from 'crypto-js';
+//import * as crypto from 'crypto-js';
 import * as randomBytes from 'random-bytes';
 import 'rxjs/add/operator/toPromise';
 
@@ -59,7 +59,7 @@ export class AuthenticateService {
     }
 
     sha512Encrypt(password, salt) {
-        var hash = crypto.SHA512(password+salt).toString(); /** Hashing algorithm sha512 */
+        var hash = SHA512(password+salt).toString(); /** Hashing algorithm sha512 */
         //var value = hash.digest('hex');
         //return password + salt hashed value
         return hash;

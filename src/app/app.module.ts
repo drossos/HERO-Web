@@ -9,7 +9,8 @@ import { AndroidDataComponent } from './contacts/android-data/android-data.compo
 import { SignInComponent } from './authenticate/sign-in/sign-in.component';
 import { SignUpComponent } from './authenticate/sign-up/sign-up.component';
 import { ContactService } from './contacts/contact.service';
-import {AuthenticateService} from './authenticate/authenticate.service'
+import {AuthenticateService} from './authenticate/authenticate.service';
+import {SHA512} from 'crypto-js';
 
 
 
