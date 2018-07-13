@@ -1,5 +1,9 @@
-<contact-list *ngIf="!signIn">
+<contact-list *ngIf="list">
 </contact-list>
+
+<sign-up *ngIf="signUp">
+</sign-up>
+
 <div class="therapist" *ngIf = "signIn">
 	<div class="row">
 		<div class="col-md-6">
@@ -32,5 +36,6 @@
 				<button type="submit" class="btn btn-warning" >Sign in</button>
 			</form>
 		</div>
+		<button type ="submit" class="btn btn-warning" (click)="signInUpToggle()">Not a user, Sign-Up</button>
 	</div>
 </div>

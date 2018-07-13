@@ -21,10 +21,10 @@
 					</div>
 					<div class="form-group">
 						<label for="email">Name</label>
-						<input type="email" class="form-control" name="email" placeholder="Enter email" minlength="4" placeholder="email" ngModel #email="ngModel" required>
+						<input type="email" class="form-control" name="email" placeholder="Enter email" minlength="4" placeholder="email" ngModel email #email="ngModel" required>
 						<div *ngIf="email.invalid && (email.dirty || email.touched)"
 							class="alert alert-danger">
-							<div *ngIf="email.errors.required">
+							<div *ngIf="email.errors.required || !email.$valid">
 								Valid email is required.
 							</div>
 							<div *ngIf="email.errors.minlength">

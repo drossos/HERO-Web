@@ -24,6 +24,8 @@ export class SignInComponent implements OnInit {
   therapist:Therapist;
   therapists:Therapist[];
   signIn : boolean = true;
+  list : boolean = false;
+  signUp : boolean = false;
   failedSignIn : boolean = false;
 	//contactList : ContactListComponent;
  	/*credentials: TokenPayload = {
@@ -63,6 +65,11 @@ export class SignInComponent implements OnInit {
     }
     this.failedSignIn = true;
     return false;
+  }
+
+  signInUpToggle(){
+    this.signIn = !this.signIn;
+    this.signUp = !this.signUp;
   }
 
 }
