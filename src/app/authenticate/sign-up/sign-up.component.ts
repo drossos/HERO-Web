@@ -43,8 +43,8 @@ export class SignUpComponent implements OnInit {
   	var newTherapist : Therapist = {
   		name : form.value.name,
   		email: form.value.email,
-  		hash: form.value.hash,
-  		salt : form.value.salt
+  		hash: form.value.password,
+  		salt : "nohash"
   	}
   	this.addTherapist(newTherapist);
   }
