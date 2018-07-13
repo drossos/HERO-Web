@@ -3,9 +3,9 @@ import { Http, Response } from '@angular/http';
 import {Therapist} from './therapist';
 import {SHA512} from 'crypto-js';
 //import * as crypto from 'crypto-js';
-import * as randomBytes from 'random-bytes';
+//import * as randomBytes from 'random-bytes';
 import 'rxjs/add/operator/toPromise';
-
+import {RandomBytes} from 'random-bytes'
 @Injectable()
 export class AuthenticateService {
 	private therapistsUrl = '/api/therapists';
@@ -55,7 +55,7 @@ export class AuthenticateService {
 
     saltGenerator(length) {
         //returns salt
-        return randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
+        return RandomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
     }
 
     sha512Encrypt(password, salt) {
