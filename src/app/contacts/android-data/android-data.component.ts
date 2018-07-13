@@ -40,10 +40,14 @@ export class AndroidDataComponent implements OnInit {
 
   testMethod(){
   	console.log("within test method");
-  	if (this.toggle)
+  	if (this.toggle){
   		this.canvas.style.visibility = 'hidden';
-  	else
+      this.graphOpen = false;
+    }
+  	else{
   		this.canvas.style.visibility = 'visible';
+      this.graphOpen = true;
+    }
 
   	this.toggle = !this.toggle;
   }
@@ -65,9 +69,6 @@ export class AndroidDataComponent implements OnInit {
       }
 
       this.myChart.update();
-
-      if (this.canvas.style.visibility === 'visible')
-        this.graphOpen = true;
   }
 
   updateGraphType(type:string){
