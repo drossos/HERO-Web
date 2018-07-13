@@ -7,6 +7,7 @@ import {SHA512} from 'crypto-js';
 import 'rxjs/add/operator/toPromise';
 import {RandomBytes} from 'random-bytes'
 import {RandomString} from 'randomstring';
+//import {RandomString} from '@types/random-string';
 @Injectable()
 export class AuthenticateService {
 	private therapistsUrl = '/api/therapists';
@@ -55,7 +56,8 @@ export class AuthenticateService {
     }
 
     saltGenerator(length) {
-        return RandomString.generate({
+      var random : RandomString;
+        return random.generate({
           length : length,
           charset : 'hex'
         });
