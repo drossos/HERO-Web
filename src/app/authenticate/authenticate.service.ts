@@ -6,16 +6,16 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AuthenticateService {
 	private therapistsUrl = '/api/therapists';
-  signIn : boolean = true;
+  static signIn : boolean = true;
   list : boolean = false;
-  signUp : boolean = false;
+  static signUp : boolean = false;
 
   constructor(private http: Http) { }
 	
     signInUpToggle(){
-      console.log("signUp:" + this.signUp + " signIn:" + this.signIn);
-    this.signIn = !this.signIn;
-    this.signUp = !this.signUp;
+      console.log("signUp:" + AuthenticateService.signUp + " signIn:" + AuthenticateService.signIn);
+    AuthenticateService.signIn = !AuthenticateService.signIn;
+    AuthenticateService.signUp = !AuthenticateService.signUp;
   }
 
 	// get("/api/therapists")
