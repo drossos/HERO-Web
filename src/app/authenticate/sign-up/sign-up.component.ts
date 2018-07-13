@@ -46,13 +46,12 @@ export class SignUpComponent implements OnInit {
   		hash: form.value.hash,
   		salt : form.value.salt
   	}
-
   	this.addTherapist(newTherapist);
-
   }
 
   addTherapist = (newTherapist : Therapist) => {
   	this.therapists.push(newTherapist);
+  	this.authService.createTherapist(newTherapist);
   	return this.therapists;
   }
 
