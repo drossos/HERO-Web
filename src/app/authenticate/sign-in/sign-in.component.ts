@@ -8,6 +8,7 @@ import { ContactListComponent} from '../../contacts/contact-list/contact-list.co
 import {Therapist} from '../therapist';
 import {AuthenticateService} from '../authenticate.service';
 import {Contact} from '../../contacts/contact';
+
 //TODO HAVE TO CAST THERAPIST AS ANY FOR IT TO READ PROPERTIES
 
 @Component({
@@ -65,7 +66,8 @@ export class SignInComponent implements OnInit {
 
   fetchTherapist(form){
     for (var i=0; i < this.therapists.length; i++){
-       if ((this.therapists[i] as any).name === (form.value).name && (this.therapists[i] as any).hash === (form.value).password)
+       if ((this.therapists[i] as any).name === (form.value).name && 
+         this.authService.verrifyPassword((this.therapists[i] as any).hash, (this.therapists[i] as any).salt,(form.value).passowrd))
          return true;
     }
     this.failedSignIn = true;

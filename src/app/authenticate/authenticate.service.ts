@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import {Therapist} from './therapist';
+//import {SHA512} from 'crypto-js';
+import * as crypto from 'crypto-js';
+import * as randomBytes from 'random-bytes';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -48,5 +51,23 @@ export class AuthenticateService {
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
       console.error(errMsg); // log to console
       return Promise.reject(errMsg);
+    }
+
+    saltGenerator(length) {
+        //returns salt
+        return randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
+    }
+
+    sha512Encrypt(password, salt) {
+        var hash = crypto.SHA512(password+salt).toString(); /** Hashing algorithm sha512 */
+        //var value = hash.digest('hex');
+        //return password + salt hashed value
+        return hash;
+    }
+
+    verrifyPassword(encrypted, salt, input) {
+        if (this.sha512Encrypt(input, salt) === encrypted)
+            return true;
+        return false;
     }
 }

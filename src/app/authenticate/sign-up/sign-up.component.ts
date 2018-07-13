@@ -40,11 +40,13 @@ export class SignUpComponent implements OnInit {
 
   register(form : NgForm){
   	console.log(form.value);
+
+  	var salt = this.authService.saltGenerator(12);
   	var newTherapist : Therapist = {
   		name : form.value.name,
   		email: form.value.email,
-  		hash: form.value.password,
-  		salt : "nohash"
+  		hash: this.authService.sha512Encrypt(form.value.password, salt),
+  		salt : salt
   	}
   	this.addTherapist(newTherapist);
   }
