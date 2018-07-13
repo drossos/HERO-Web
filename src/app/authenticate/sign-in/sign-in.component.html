@@ -4,7 +4,7 @@
 <sign-up *ngIf="authService.signUp">
 </sign-up>
 
-<div class="therapist" *ngIf = "signIn">
+<div class="therapist" *ngIf = "authService.signIn">
 	<div class="row">
 		<div class="col-md-6">
 			<h1 class="form-signin-heading">Sign in</h1>
@@ -36,6 +36,6 @@
 				<button type="submit" class="btn btn-warning" >Sign in</button>
 			</form>
 		</div>
-		<button type ="submit" class="btn btn-warning" (click)="signInUpToggle()">Not a user, Sign-Up</button>
+		<button type ="submit" class="btn btn-warning" (click)="authService.signInUpToggle()">Not a user, Sign-Up</button>
 	</div>
 </div>
