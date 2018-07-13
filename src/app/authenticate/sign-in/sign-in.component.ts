@@ -52,8 +52,11 @@ export class SignInComponent implements OnInit {
   login(form : NgForm){
     console.log(form.value);
     
-    if (this.fetchTherapist(form))
-      this.signIn = false;
+    if (this.fetchTherapist(form)){
+      this.authService.signIn = false;
+      this.authService.signUp = false;
+
+    }
     else 
       console.log("non-valid therapist");
   }
@@ -65,11 +68,6 @@ export class SignInComponent implements OnInit {
     }
     this.failedSignIn = true;
     return false;
-  }
-
-  signInUpToggle(){
-    this.signIn = !this.signIn;
-    this.signUp = !this.signUp;
   }
 
 }

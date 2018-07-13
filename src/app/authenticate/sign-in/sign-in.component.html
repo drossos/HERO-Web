@@ -1,7 +1,7 @@
-<contact-list *ngIf="list">
+<contact-list *ngIf="!authService.signUp && !authService.signIn">
 </contact-list>
 
-<sign-up *ngIf="signUp">
+<sign-up *ngIf="authService.signUp">
 </sign-up>
 
 <div class="therapist" *ngIf = "signIn">

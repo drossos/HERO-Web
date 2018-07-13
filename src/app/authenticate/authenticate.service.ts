@@ -6,10 +6,17 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AuthenticateService {
 	private therapistsUrl = '/api/therapists';
-
+  signIn : boolean = true;
+  list : boolean = false;
+  signUp : boolean = false;
 
   constructor(private http: Http) { }
 	
+    signInUpToggle(){
+    this.signIn = !this.signIn;
+    this.signUp = !this.signUp;
+  }
+
 	// get("/api/therapists")
     getTherapists(): Promise<Therapist[]> {
     	console.log("In auth service");
