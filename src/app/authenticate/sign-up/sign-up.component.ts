@@ -16,13 +16,42 @@ import {Contact} from '../../contacts/contact';
 })
 export class SignUpComponent implements OnInit {
 
+	@Input()
+  	currTherapist : Therapist;
+  	therapist:Therapist;
+ 	therapists:Therapist[];
+
+
   constructor(private authService:AuthenticateService) { }
 
   ngOnInit() {
+
+  	this.authService
+      .getTherapists()
+      .then((therapists: Therapist[]) => {
+        this.therapists = therapists.map((therapist) => {
+          if (!(therapist as any).name) {
+            (therapist as any).name = "default";
+          }
+          return therapist;
+        });
+      });
   }
 
   register(form : NgForm){
 
+  	console.log(form.value);
+
+  	var newTherapist : Therapist = {
+  		name : form.value.name,
+  		email: form.value.email,
+  		hash: form.value.hash,
+  		salt : form.value.salt
+
+  	}
+
+  	this.therapists.push(newTherapist);
+  	return this.therapists;
   }
 
 }
