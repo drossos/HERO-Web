@@ -137,11 +137,20 @@ app.get("/api/therapists", function(req, res) {
     });
 });
 
+//TODO POST NOT WORKING AT THE MOMENT
 app.post("/api/therapists", function(req, res) {
     var newTherapist = req.body;
     newTherapist.createDate = new Date();
-
+/*
     if (!req.body.name) {
         handleError(res, "Invalid user input", "Must provide a name.", 400);
-    }
+    }*/
+
+    db.collection(THERAPISTS_COLLECTON).insertOne(newTherapist, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to create new therapist.");
+        } else {
+            res.status(201).json(doc.ops[0]);
+        }
+    });
 });
