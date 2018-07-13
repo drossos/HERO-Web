@@ -141,10 +141,10 @@ app.get("/api/therapists", function(req, res) {
 app.post("/api/therapists", function(req, res) {
     var newTherapist = req.body;
     newTherapist.createDate = new Date();
-/*
-    if (!req.body.name) {
+
+    if (!req.body.hash) {
         handleError(res, "Invalid user input", "Must provide a name.", 400);
-    }*/
+    }
 
     db.collection(THERAPISTS_COLLECTON).insertOne(newTherapist, function(err, doc) {
         if (err) {
