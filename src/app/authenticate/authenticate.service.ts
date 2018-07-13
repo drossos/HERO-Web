@@ -56,8 +56,7 @@ export class AuthenticateService {
     }
 
     saltGenerator(length) {
-      var random = new RandomString();
-        return random.generate({
+        return RandomString.generate({
           length : length,
           charset : 'hex'
         });
