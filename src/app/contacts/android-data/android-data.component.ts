@@ -15,6 +15,7 @@ export class AndroidDataComponent implements OnInit {
 	test : string = "Android Pipes are working";
 	testConfirm : string = ""
 	toggle : boolean = true;
+  graphOpen : boolean = false;
 	canvas: any;
   	ctx: any;
   	myChart:any;
@@ -64,6 +65,9 @@ export class AndroidDataComponent implements OnInit {
       }
 
       this.myChart.update();
+
+      if (this.canvas.style.visibility === 'visible')
+        this.graphOpen = true;
   }
 
   updateGraphType(type:string){
