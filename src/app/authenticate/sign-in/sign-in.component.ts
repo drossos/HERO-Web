@@ -53,8 +53,8 @@ export class SignInComponent implements OnInit {
     console.log(form.value);
     
     if (this.fetchTherapist(form)){
-      this.authService.signIn = false;
-      this.authService.signUp = false;
+      AuthenticateService.signIn = false;
+      AuthenticateService.signUp = false;
 
     }
     else 
