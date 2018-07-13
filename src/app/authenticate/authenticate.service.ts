@@ -13,6 +13,7 @@ export class AuthenticateService {
   constructor(private http: Http) { }
 	
     signInUpToggle(){
+      console.log("signUp:" + this.signUp + " signIn:" + this.signIn);
     this.signIn = !this.signIn;
     this.signUp = !this.signUp;
   }
