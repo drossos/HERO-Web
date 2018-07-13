@@ -55,7 +55,8 @@ export class AuthenticateService {
 
     saltGenerator(length) {
         //returns salt
-        return RandomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
+        //return RandomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
+        return "asdf";
     }
 
     sha512Encrypt(password, salt) {
