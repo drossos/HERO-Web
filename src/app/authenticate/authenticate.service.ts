@@ -73,7 +73,7 @@ export class AuthenticateService {
     }
 
     verrifyPassword(encrypted, salt, input) {
-        if (this.sha512Encrypt(input, salt) === encrypted)
+        if (this.sha512Encrypt(input, salt).toUpperCase() === encrypted.toUpperCase())
             return true;
         return false;
     }
