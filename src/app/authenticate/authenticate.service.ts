@@ -18,6 +18,13 @@ export class AuthenticateService {
     AuthenticateService.signUp = !AuthenticateService.signUp;
   }
 
+  authCopy(){
+    return {
+      signIn: AuthenticateService.signIn,
+      signUp: AuthenticateService.signUp
+    }
+  }
+
 	// get("/api/therapists")
     getTherapists(): Promise<Therapist[]> {
     	console.log("In auth service");

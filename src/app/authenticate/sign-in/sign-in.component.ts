@@ -23,9 +23,11 @@ export class SignInComponent implements OnInit {
   currTherapist : Therapist;
   therapist:Therapist;
   therapists:Therapist[];
-  signIn : boolean = true;
-  list : boolean = false;
-  signUp : boolean = false;
+  authCopy = {
+    signIn: AuthenticateService.signIn,
+    signUp: AuthenticateService.signUp
+  }
+
   failedSignIn : boolean = false;
 	//contactList : ContactListComponent;
  	/*credentials: TokenPayload = {
@@ -69,5 +71,12 @@ export class SignInComponent implements OnInit {
     this.failedSignIn = true;
     return false;
   }
+
+/*  updateAuthCopy(){
+    this.authCopy = {
+      signIn: AuthenticateService.signIn,
+      signUp: AuthenticateService.signUp
+    }
+  }*/
 
 }

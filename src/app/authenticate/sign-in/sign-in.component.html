@@ -1,10 +1,10 @@
-<contact-list *ngIf="!AuthenticateService.signUp && !AuthenticateService.signIn">
+<contact-list *ngIf="!authService.authCopy().signUp && !authService.authCopy().signIn">
 </contact-list>
 
-<sign-up *ngIf="AuthenticateService.signUp">
+<sign-up *ngIf="authService.authCopy().signUp">
 </sign-up>
 
-<div class="therapist" *ngIf = "AuthenticateService.signIn">
+<div class="therapist" *ngIf = "authService.authCopy().signIn">
 	<div class="row">
 		<div class="col-md-6">
 			<h1 class="form-signin-heading">Sign in</h1>
