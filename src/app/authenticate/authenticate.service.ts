@@ -10,7 +10,7 @@ export class AuthenticateService {
 
   constructor(private http: Http) { }
 	
-	// get("/api/contacts")
+	// get("/api/therapists")
     getTherapists(): Promise<Therapist[]> {
     	console.log("In auth service");
       return this.http.get(this.therapistsUrl)
@@ -19,8 +19,8 @@ export class AuthenticateService {
                  .catch(this.handleError);
     }
 
-    // post("/api/contacts")
-    createContact(newTherapist: Therapist): Promise<Therapist> {
+    // post("/api/therapists")
+    createTherapist(newTherapist: Therapist): Promise<Therapist> {
       return this.http.post(this.therapistsUrl, newTherapist)
                  .toPromise()
                  .then(response => response.json() as Therapist)

@@ -39,17 +39,19 @@ export class SignUpComponent implements OnInit {
   }
 
   register(form : NgForm){
-
   	console.log(form.value);
-
   	var newTherapist : Therapist = {
   		name : form.value.name,
   		email: form.value.email,
   		hash: form.value.hash,
   		salt : form.value.salt
-
   	}
 
+  	this.addTherapist(newTherapist);
+
+  }
+
+  addTherapist = (newTherapist : Therapist) => {
   	this.therapists.push(newTherapist);
   	return this.therapists;
   }
