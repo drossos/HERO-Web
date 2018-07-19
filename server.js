@@ -105,7 +105,7 @@ app.put("/api/contacts/:id", function(req, res) {
         _id: new ObjectID(req.params.id)
     }, updateDoc, function(err, doc) {
         if (err) {
-            handleError(res, err.message, "Failed to update contact");
+            handleError(res, err.message, "Failed to update contact" + updateDoc.toString());
         } else {
             updateDoc._id = req.params.id;
             res.status(200).json(updateDoc);
