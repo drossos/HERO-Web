@@ -98,10 +98,10 @@ app.get("/api/contacts/:id", function(req, res) {
 });
 
 app.put("/api/contacts/:id", function(req, res) {
-    var updateDoc = {$set : req.body};
+    var updateDoc = {$set : { <field>: req.body } };
     delete updateDoc._id;
 
-    db.collection(CONTACTS_COLLECTION).update({
+    db.collection(CONTACTS_COLLECTION).updateOne({
         _id: new ObjectID(req.params.id)
     }, updateDoc, function(err, doc) {
         if (err) {
