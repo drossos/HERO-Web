@@ -101,7 +101,7 @@ app.put("/api/contacts/:id", function(req, res) {
     var updateDoc = req.body;
     delete updateDoc._id;
 
-    db.collection(CONTACTS_COLLECTION).update({
+    db.collection(CONTACTS_COLLECTION).uppdateOne({
         _id: new ObjectID(req.params.id)
     }, updateDoc, function(err, doc) {
         if (err) {
