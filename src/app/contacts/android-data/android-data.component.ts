@@ -3,7 +3,8 @@ import { Chart, ChartData, Point } from "chart.js";
 import {Contact} from '../contact';
 import { ContactService } from '../contact.service';
 import {ContactListComponent} from '../contact-list/contact-list.component';
- 
+
+
 @Component({
   selector: 'android-data',
   templateUrl: './android-data.component.html',
@@ -26,6 +27,8 @@ export class AndroidDataComponent implements OnInit {
         display:true
       }
     };
+
+
 
   constructor(private contactService:ContactService) { }
 

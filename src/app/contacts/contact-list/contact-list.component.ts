@@ -5,6 +5,9 @@ import { ContactDetailsComponent } from '../contact-details/contact-details.comp
 import {AndroidDataComponent} from '../android-data/android-data.component';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
+import {Observable} from "rxjs";
+
 @Component({
   selector: 'contact-list',
   templateUrl: './contact-list.component.html',
@@ -13,33 +16,34 @@ import { BrowserModule } from '@angular/platform-browser';
 })
 
 export class ContactListComponent implements OnInit {
-  contacts: Contact[]
+  contacts: AngularFireList<Contact>;
   selectedContact: Contact
+  contactsArr: {}[];
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
-     this.contactService
-      .getContacts()
-      .then((contacts: Contact[]) => {
-        this.contacts = contacts.map((contact) => {
-          if (!contact.metric1) {
-            contact.metric1 = 357;
-          }
-          return contact;
-        });
+     this.contacts = this.contactService.getContacts();
+
+     //put contacts into easily useable form
+     this.contacts.valueChanges().subscribe(p=>{
+        this.contactsArr = p;
       });
+      console.log(this.contactsArr);
+
   }
 
   private getIndexOfContact = (contactId: String) => {
-    return this.contacts.findIndex((contact) => {
-      return contact._id === contactId;
-    });
+    for (var i =0; i < this.contactsArr.length; i++){
+      if ((this.contactsArr[i] as any).id === contactId)
+        return i;
+    }
   }
 
   selectContact(contact: Contact) {
     this.selectedContact = contact;
     ContactService.setCurrContact(this.selectedContact);
+
   }
 
   createNewContact() {
@@ -57,7 +61,7 @@ export class ContactListComponent implements OnInit {
   deleteContact = (contactId: String) => {
     var idx = this.getIndexOfContact(contactId);
     if (idx !== -1) {
-      this.contacts.splice(idx, 1);
+     // this.contacts.splice(idx, 1);
       this.selectContact(null);
     }
     return this.contacts;
@@ -70,7 +74,7 @@ export class ContactListComponent implements OnInit {
   }
 
   updateContact = (contact: Contact) => {
-    var idx = this.getIndexOfContact(contact._id);
+    var idx = this.getIndexOfContact(contact.id);
     if (idx !== -1) {
       this.contacts[idx] = contact;
       this.selectContact(contact);

@@ -8,7 +8,8 @@ import { ContactListComponent} from '../../contacts/contact-list/contact-list.co
 import {Therapist} from '../therapist';
 import {AuthenticateService} from '../authenticate.service';
 import {Contact} from '../../contacts/contact';
-
+import {Observable} from "rxjs";
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 //TODO HAVE TO CAST THERAPIST AS ANY FOR IT TO READ PROPERTIES
 
 @Component({
@@ -21,57 +22,80 @@ export class SignInComponent implements OnInit {
 
   
   @Input()
-  currTherapist : Therapist;
-  therapist:Therapist;
-  therapists:Therapist[];
-  authCopy = {
+  public currTherapist : Therapist;
+  public therapist:Therapist;
+  public therapists: AngularFireList<any>;
+  public authCopy = {
     signIn: AuthenticateService.signIn,
     signUp: AuthenticateService.signUp
   }
+  public therapistArr:{}[];
 
-  failedSignIn : boolean = false;
+  public failedSignIn : boolean = false;
 	//contactList : ContactListComponent;
  	/*credentials: TokenPayload = {
     email: '',
     password: ''
 	};*/
 
-  constructor(private authService:AuthenticateService) { }
+  constructor(public authService:AuthenticateService) { }
 
   ngOnInit() {
 
-    this.authService
-      .getTherapists()
-      .then((therapists: Therapist[]) => {
+    this.therapists = this.authService
+      .getTherapists();
+      /*.then((therapists: Therapist[]) => {
         this.therapists = therapists.map((therapist) => {
           if (!(therapist as any).name) {
             (therapist as any).name = "default";
           }
           return therapist;
         });
+      });*/
+
+      //this prints the values within the database to the console
+      this.therapists.valueChanges().subscribe(p=>{
+        this.therapistArr = p;
       });
+      console.log(this.therapistArr);
   }
 
   login(form : NgForm){
     console.log(form.value);
-    
-    if (this.fetchTherapist(form)){
+    var foundTherapist = this.fetchTherapist(form);
+
+    if (foundTherapist){
       AuthenticateService.signIn = false;
       AuthenticateService.signUp = false;
-
+      this.authService.firebase.app.auth().signInWithEmailAndPassword(form.value.name, form.value.password);
     }
     else 
       console.log("non-valid therapist");
-  }
+}
 
   fetchTherapist(form){
-    for (var i=0; i < this.therapists.length; i++){
-       if ((this.therapists[i] as any).name === (form.value).name && 
-         this.authService.verrifyPassword((this.therapists[i] as any).hash, (this.therapists[i] as any).salt,(form.value).password))
+        for (var i =0; i < this.therapistArr.length; i++){
+          //map and array
+          console.log((this.therapistArr[i] as any));
+          console.log((form.value).name);
+         if ((this.therapistArr[i] as any).name === (form.value).name && 
+         this.authService.verrifyPassword((this.therapistArr[i] as any).hash, (this.therapistArr[i] as any).salt,(form.value).password)){           
+        /* console.log(p[4] === (form.value).name && 
+         this.authService.verrifyPassword(p[3], p[5],(form.value).password));*/
          return true;
-    }
+     }
+   }
+
     this.failedSignIn = true;
     return false;
+  }
+
+  getSignIn(){
+    return this.authService.authCopy().signIn;
+  }
+
+  signInToggle(){
+    this.authService.signInUpToggle();
   }
 
 /*  updateAuthCopy(){

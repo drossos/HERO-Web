@@ -4,6 +4,23 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 
+import { AngularFireDatabase, AngularFireList, DatabaseQuery} from 'angularfire2/database'
+import {Observable} from "rxjs";
+
+export const environment = {
+  production: false,
+  firebaseConfig : {
+    apiKey: "AIzaSyCbmXlJfBmRQlV1Wk1IkOwX3iKeeOSqMNY",
+    authDomain: "hero-d6297.firebaseapp.com",
+    databaseURL: "https://hero-d6297.firebaseio.com",
+    projectId: "hero-d6297",
+    storageBucket: "hero-d6297.appspot.com",
+    messagingSenderId: "174077758217"
+  }
+};
+
+
+
 @Injectable()
 export class ContactService {
     private contactsUrl = '/api/contacts';
@@ -17,41 +34,52 @@ export class ContactService {
       metric3: 0,
     };
 
-    constructor (private http: Http) {}
+    public patientRoute = "/patients";
+    contactList: AngularFireList<any>;
+
+    constructor (private http: Http, public firebase :AngularFireDatabase) {}
+
+    ngOnInit(){
+      this.contactList = this.firebase.list(this.patientRoute);
+    }
+
 
     // get("/api/contacts")
-    getContacts(): Promise<Contact[]> {
-      return this.http.get(this.contactsUrl)
-                 .toPromise()
-                 .then(response => response.json() as Contact[])
-                 .catch(this.handleError);
+    getContacts(){
+      console.log("getting contacts")
+      this.contactList = this.firebase.list(this.patientRoute);
+      return this.contactList;
     }
 
     // post("/api/contacts")
-    createContact(newContact: Contact): Promise<Contact> {
-      return this.http.post(this.contactsUrl, newContact)
-                 .toPromise()
-                 .then(response => response.json() as Contact)
-                 .catch(this.handleError);
+    createContact(newContact: Contact){
+      var newId = newContact.name + "_" + (Math.random()*100).toFixed(0);
+      this.firebase.object(this.patientRoute+"/" + newId).set({
+        id: newId,
+        name: newContact.name,
+        metric1: newContact.metric1,
+        metric2: newContact.metric2,
+        metric3: newContact.metric3,
+      });
     }
 
     // get("/api/contacts/:id") endpoint not used by Angular app
 
     // delete("/api/contacts/:id")
-    deleteContact(delContactId: String): Promise<String> {
-      return this.http.delete(this.contactsUrl + '/' + delContactId)
-                 .toPromise()
-                 .then(response => response.json() as String)
-                 .catch(this.handleError);
+    //TODO FIX SO CAN FIND ID AND USE THAT TO DELETE FROM DATABASE
+    deleteContact(delContactId: String) {
+      this.firebase.object(this.patientRoute+"/"+delContactId).remove();
     }
 
     // put("/api/contacts/:id")
-    updateContact(putContact: Contact): Promise<Contact> {
-      var putUrl = this.contactsUrl + '/' + putContact._id;
-      return this.http.put(putUrl, putContact)
-                 .toPromise()
-                 .then(response => response.json() as Contact)
-                 .catch(this.handleError);
+    updateContact(putContact: Contact){
+      this.firebase.object(this.patientRoute+"/" + putContact.id).set({
+        id: putContact.id,
+        name: putContact.name,
+        metric1: putContact.metric1,
+        metric2: putContact.metric2,
+        metric3: putContact.metric3,
+      });
     }
 
     static getCurrContact(){
@@ -68,4 +96,5 @@ export class ContactService {
       console.error(errMsg); // log to console
       return Promise.reject(errMsg);
     }
+
 }

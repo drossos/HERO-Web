@@ -21,22 +21,23 @@ export class ContactDetailsComponent {
   deleteHandler: Function;
 
   constructor (private contactService: ContactService) {}
+  
+  ngOnInit(){
+ 
+  }
 
   createContact(contact: Contact) {
-    this.contactService.createContact(contact).then((newContact: Contact) => {
-      this.createHandler(newContact);
-    });
+    this.contactService.createContact(contact);
+    this.createHandler();
   }
 
   updateContact(contact: Contact): void {
-    this.contactService.updateContact(contact).then((updatedContact: Contact) => {
-      this.updateHandler(updatedContact);
-    });
+    this.contactService.updateContact(contact);
+    this.updateHandler();
   }
 
   deleteContact(contactId: String): void {
-    this.contactService.deleteContact(contactId).then((deletedContactId: String) => {
-      this.deleteHandler(deletedContactId);
-    });
+    this.contactService.deleteContact(contactId);
+    this.deleteHandler();
   }
 }

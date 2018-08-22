@@ -11,8 +11,11 @@ import { SignUpComponent } from './authenticate/sign-up/sign-up.component';
 import { ContactService } from './contacts/contact.service';
 import {AuthenticateService} from './authenticate/authenticate.service';
 import {SHA512} from 'crypto-js';
-
-
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+import { AuthService } from './core/auth.service';
 
 @NgModule({
   declarations: [
@@ -27,10 +30,13 @@ import {SHA512} from 'crypto-js';
     BrowserModule,
     FormsModule,
     HttpModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   exports: [
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

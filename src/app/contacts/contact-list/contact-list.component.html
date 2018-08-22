@@ -3,7 +3,7 @@
     <h2>Patients</h2>
     <ul class="list-group">
       <li class="list-group-item"
-        *ngFor="let contact of contacts"
+        *ngFor="let contact of contactsArr"
         (click)="selectContact(contact)"
         [class.active]="contact === selectedContact">
         {{contact.name}}

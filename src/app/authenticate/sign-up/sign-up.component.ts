@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ContactListComponent} from '../../contacts/contact-list/contact-list.component';
 import {Therapist} from '../therapist';
 import {AuthenticateService} from '../authenticate.service';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 @Component({
   selector: 'sign-up',
@@ -17,32 +18,28 @@ import {AuthenticateService} from '../authenticate.service';
 export class SignUpComponent implements OnInit {
 
 	@Input()
-  	currTherapist : Therapist;
-  	therapist:Therapist;
- 	therapists:Therapist[];
+  	public currTherapist : Therapist;
+  	public therapist:Therapist;
+ 	public therapists:AngularFireList<any>;
 
 
-  constructor(private authService:AuthenticateService) { }
+  constructor(public authService:AuthenticateService) { }
 
   ngOnInit() {
 
-  	this.authService
-      .getTherapists()
-      .then((therapists: Therapist[]) => {
-        this.therapists = therapists.map((therapist) => {
-          if (!(therapist as any).name) {
-            (therapist as any).name = "default";
-          }
-          return therapist;
-        });
-      });
+  	this.authService.getTherapists();
+
+     this.therapists = this.authService
+      .getTherapists();
+      
   }
 
-  register(form : NgForm){
+  public register(form : NgForm){
   	console.log(form.value);
 
   	var salt = this.authService.saltGenerator(12);
   	var newTherapist : Therapist = {
+      id: "",
   		name : form.value.name,
   		email: form.value.email,
   		hash: this.authService.sha512Encrypt(form.value.password, salt),
@@ -51,12 +48,15 @@ export class SignUpComponent implements OnInit {
   	this.addTherapist(newTherapist);
   }
 
-  addTherapist = (newTherapist : Therapist) => {
-  	this.therapists.push(newTherapist);
+  public addTherapist = (newTherapist : Therapist) => {
+  	//this.therapists.push(newTherapist);
   	this.authService.createTherapist(newTherapist);
   	AuthenticateService.signIn = false;
   	AuthenticateService.signUp = false;
   	return this.therapists;
   }
 
+  signInToggle(){
+    this.authService.signInUpToggle();
+  }
 }

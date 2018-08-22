@@ -2,49 +2,61 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import {Therapist} from './therapist';
 import {SHA512} from 'crypto-js';
-//import * as crypto from 'crypto-js';
-//import * as randomBytes from 'random-bytes';
+
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import { AngularFireModule} from 'angularfire2';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {Observable} from "rxjs";
 import 'rxjs/add/operator/toPromise';
-/*import {RandomBytes} from 'random-bytes'
-import {RandomString} from 'randomstring';*/
-//import {RandomString} from '@types/random-string';
+
+
 @Injectable()
 export class AuthenticateService {
 	private therapistsUrl = '/api/therapists';
   static signIn : boolean = true;
   list : boolean = false;
   static signUp : boolean = false;
+  //tab in db
+  private therapistsRoute = "/therapists";
+  therapistList: AngularFireList<any>;
 
-  constructor(private http: Http) { }
+
+
+  constructor(private http: Http, public firebase :AngularFireDatabase, public fbAuth : AngularFireAuth) { }
 	
-    signInUpToggle(){
+    public signInUpToggle(){
       console.log("signUp:" + AuthenticateService.signUp + " signIn:" + AuthenticateService.signIn);
     AuthenticateService.signIn = !AuthenticateService.signIn;
     AuthenticateService.signUp = !AuthenticateService.signUp;
   }
 
-  authCopy(){
+  public authCopy(){
     return {
       signIn: AuthenticateService.signIn,
       signUp: AuthenticateService.signUp
     }
   }
 
-	// get("/api/therapists")
-    getTherapists(): Promise<Therapist[]> {
+    //get therapist list from firebase
+    getTherapists() {
     	console.log("In auth service");
-      return this.http.get(this.therapistsUrl)
-                 .toPromise()
-                 .then(response => response.json() as Therapist[])
-                 .catch(this.handleError);
+      //returns the entire database
+      this.therapistList =  this.firebase.list(this.therapistsRoute);
+      return this.therapistList;
     }
 
     // post("/api/therapists")
-    createTherapist(newTherapist: Therapist): Promise<Therapist> {
-      return this.http.post(this.therapistsUrl, newTherapist)
-                 .toPromise()
-                 .then(response => response.json() as Therapist)
-                 .catch(this.handleError);
+    createTherapist(newTherapist: Therapist){
+      var newId = newTherapist.name + "_" + (Math.random()*100).toFixed(0);
+
+       this.fbAuth.auth.createUserWithEmailAndPassword(newTherapist.name, newTherapist.hash);
+      this.firebase.object(this.therapistsRoute+"/" + newId).set({
+        id: newId,
+        name: newTherapist.name,
+        email: newTherapist.email,
+        hash: newTherapist.hash,
+        salt: newTherapist.salt,
+      });
     }
 
 
